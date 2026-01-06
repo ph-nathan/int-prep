@@ -14,8 +14,15 @@ function getConcatenation(nums) {
 function getConcatenation(nums) {
     return [...nums, ...nums];
 }
-*/
+
 
 function getConcatenation(nums) {
     return nums.concat(nums);
+}
+*/
+
+function getConcatenation(nums) {
+    const ans = [...nums];
+    ans.push(...nums);
+    return ans;
 }
