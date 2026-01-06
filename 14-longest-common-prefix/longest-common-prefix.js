@@ -1,8 +1,25 @@
-// Find out about shared methods between array and string
 /**
  * @param {string[]} strs
  * @return {string}
  */
+
+var longestCommonPrefix = function(strs) {
+    const len = strs.length;
+
+    if (!len) {
+        return "";
+    }
+
+    return strs.reduce((acc, curr) => {
+        let i = 0;
+        while (curr[i] && acc[i] && curr[i] === acc[i]) {
+            i++;
+        }
+        return acc.slice(0, i);
+    }, strs[0])
+};
+
+/**
 var longestCommonPrefix = function(strs) {
     const len = strs.length;
 
@@ -27,3 +44,4 @@ var longestCommonPrefix = function(strs) {
 
     return common.join('');
 };
+ */
