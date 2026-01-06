@@ -9,8 +9,13 @@ function getConcatenation(nums) {
 
     return ans;
 }
-*/
+
 
 function getConcatenation(nums) {
     return [...nums, ...nums];
+}
+*/
+
+function getConcatenation(nums) {
+    return nums.concat(nums);
 }
