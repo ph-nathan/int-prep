@@ -1,3 +1,4 @@
+/** 
 function getConcatenation(nums) {
     const len = nums.length;
     const ans = new Array(2 * len);
@@ -7,4 +8,9 @@ function getConcatenation(nums) {
     }
 
     return ans;
+}
+*/
+
+function getConcatenation(nums) {
+    return [...nums, ...nums];
 }
