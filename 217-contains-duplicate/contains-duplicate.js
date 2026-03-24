@@ -16,7 +16,7 @@ function containsDuplicatev0(nums) {
 }
 
 // Sort O(NlogN)
-function containsDuplicate(nums) {
+function containsDuplicatev1(nums) {
     nums.sort();
     // ascending
     // or const sortedNums = nums.toSorted();
@@ -31,9 +31,9 @@ function containsDuplicate(nums) {
 }
 
 // Set O(N)
-function containsDuplicatev2(nums) {
+function containsDuplicate(nums) {
     const numsSet = new Set(nums);
 
-    return numSet.size !== nums.length;
+    return numsSet.size !== nums.length;
 
 }
