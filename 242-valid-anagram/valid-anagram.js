@@ -5,7 +5,6 @@
  */
 
 // Intuition: check if the # of occurences of character of the two words match
-// frequency -> need a map
 
 function isAnagram(s, t) {
     if (s.length !== t.length) {
