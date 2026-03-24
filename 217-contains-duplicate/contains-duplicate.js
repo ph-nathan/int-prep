@@ -31,9 +31,25 @@ function containsDuplicatev1(nums) {
 }
 
 // Set O(N)
-function containsDuplicate(nums) {
+function containsDuplicatev2(nums) {
     const numsSet = new Set(nums);
 
     return numsSet.size !== nums.length;
 
 }
+
+// optimized Set space O(N)
+
+function containsDuplicate(nums) {
+    const seen = new Set();
+
+    for (let i = 0; i < nums.length; i++) {
+        if (seen.has(nums[i])) {
+            return true;
+        } else {
+            seen.add(nums[i]);
+        }
+    }
+
+    return false;
+};
