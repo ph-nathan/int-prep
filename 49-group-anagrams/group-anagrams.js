@@ -3,6 +3,8 @@
  * @return {string[][]}
  */
 
+// Naive: anagrams have the same form sorted
+// -> use it as key to group anagram together
 function groupAnagrams(strs) {
     const groups = {};
     
@@ -19,3 +21,4 @@ function groupAnagrams(strs) {
    
 };
 
+// eficient instead of using sorted, can use histogram string as key
