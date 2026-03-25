@@ -4,7 +4,8 @@
  */
 // Learning Points:
 // - slice / splice
-// 
+// - sort alphabetically
+
 // Naive:
 // Compare strings one at a time, keep a common string 
 function longestCommonPrefixv0(strs) {
@@ -23,7 +24,25 @@ function longestCommonPrefixv0(strs) {
     return common;
 };
 
+// More efficient naive
 function longestCommonPrefix(strs) {
+    let common = strs[0];
+
+    for (const str of strs) {
+        for (let i = 0; i < common.length; i++) {
+            if (common[i] !== str[i]) {
+                common = common.slice(0, i);
+                break;
+            }
+        } 
+    }
+
+    return common;
+};
+
+// Optimal: By sorting the strings alphabetically, 
+// the two least common strings get pushed to the two ends
+function longestCommonPrefixv2(strs) {
     strs.sort();
 
     const first = strs[0];
