@@ -10,7 +10,6 @@
 
 function removeElement(nums, val) {
     const len = nums.length;
-    let count = 0;
     let l = 0;
     let r = len - 1;
     
