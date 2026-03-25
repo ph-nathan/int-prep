@@ -2,46 +2,18 @@
  * @param {string[]} strs
  * @return {string}
  */
+function longestCommonPrefix(strs) {
+    let common = strs[0];
 
-var longestCommonPrefix = function(strs) {
-    const len = strs.length;
-
-    if (!len) {
-        return "";
-    }
-
-    return strs.reduce((acc, curr) => {
-        let i = 0;
-        while (curr[i] && acc[i] && curr[i] === acc[i]) {
-            i++;
-        }
-        return acc.slice(0, i);
-    }, strs[0])
-};
-
-/**
-var longestCommonPrefix = function(strs) {
-    const len = strs.length;
-
-    if (!len) {
-        return "";
-    }
-
-    let common = Array.from(strs[0]);
-    for (let i = 1; i < strs.length; i++) {
-        const curr = strs[i];
-
-        const maxLen = Math.max(curr.length, common.length);
-        
-        for (let j = 0; j < maxLen; j++) {
-            if (curr[j] === common[j]) {
-                continue;
+    for (const str of strs) {
+        const minLen = Math.min(common.length, str.length);
+        common = common.slice(0, minLen);
+        for (let i = minLen - 1; i >= 0; i--) {
+            if (str[i] !== common[i]) {
+                common = common.slice(0, i);
             }
-            common.splice(j); // same as common = common.slice(0, j);
-            break;
-        }
+        } 
     }
 
-    return common.join('');
+    return common;
 };
- */
