@@ -3,29 +3,26 @@
  * @param {number} val
  * @return {number}
  */
+// learning points
+// - 
+// - 
+// 
+
 function removeElement(nums, val) {
     const len = nums.length;
     let count = 0;
     let l = 0;
     let r = len - 1;
     
-
-    // if len = 1, l < r will miscount one 
+    // mistake potentially: l < r -> lead to missing the middle element if odd length
     while (l <= r) {
         if (nums[l] === val) {
-            while (nums[r] === val && l <= r) {
-                r--;
-            }
-            if (r > 0 && l <= r) {
-                count++; 
-                const temp = nums[r];
-                nums[r] = val;
-                nums[l] = temp;
-            } 
+            nums[l] = nums[r];
+            r--;
         } else {
-            count++; 
+            l++;
         }
-        l++;
     }
-    return count;
+
+    return r + 1;
 };
