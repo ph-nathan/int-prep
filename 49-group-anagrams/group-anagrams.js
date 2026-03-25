@@ -36,7 +36,8 @@ function groupAnagrams(strs) {
         }
 
         // arr numbers -> string
-        const key = histogram.reduce((acc, init) => (acc + ',' + init),'');
+        // const key = histogram.reduce((acc, init) => (acc + ',' + init),'');
+        const key = histogram.join(',');
 
         // console.log(key);
 
