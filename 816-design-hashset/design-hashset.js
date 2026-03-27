@@ -1,10 +1,50 @@
 
-// Naive: use a very large array 10^6 + 1, 
-// key is index 
-// value: 0 means not present, 1 means present
-// add in O(1), remove in O(1), contains in O(1)
+// Learning points:
+// - internal hashset (hash table) implementation: buckets arr + linked list + hash fn
+// - power ** and modulo %
+// - delete in array javascript, include in array javascript
+// - this.
+// - choosing bucket size
+// -
+
+
+// // Naive: use an array as large as the upper bound 10^6 + 1, 
+// // key is index 
+// // value: 0 means not present, 1 means present
+// // add in O(1), remove in O(1), contains in O(1)
+// var MyHashSet = function() {
+//     this.set = new Array((10 ** 6) + 1).fill(0);
+// };
+
+// /** 
+//  * @param {number} key
+//  * @return {void}
+//  */
+// MyHashSet.prototype.add = function(key) {
+//     this.set[key] = 1;
+// };
+
+// /** 
+//  * @param {number} key
+//  * @return {void}
+//  */
+// MyHashSet.prototype.remove = function(key) {
+//     this.set[key] = 0;
+// };
+
+// /** 
+//  * @param {number} key
+//  * @return {boolean}
+//  */
+// MyHashSet.prototype.contains = function(key) {
+//     return !!this.set[key];
+// };
+// */
+
 var MyHashSet = function() {
-    this.set = new Array((10 ** 6) + 1).fill(0);
+    this.size = 12289;
+    this.buckets = new Array(this.size).fill().map(() => new Array());
+    this.hashFn = (num) => num % this.size;
 };
 
 /** 
@@ -12,7 +52,10 @@ var MyHashSet = function() {
  * @return {void}
  */
 MyHashSet.prototype.add = function(key) {
-    this.set[key] = 1;
+    const idx = this.hashFn(key);
+    if (!this.buckets[idx].includes(key)) {
+        this.buckets[idx].push(key);
+    }
 };
 
 /** 
@@ -20,7 +63,11 @@ MyHashSet.prototype.add = function(key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function(key) {
-    this.set[key] = 0;
+    const bucketIdx = this.hashFn(key);
+    const keyIdx = this.buckets[bucketIdx].indexOf(key);
+    if (keyIdx !== -1) {
+        this.buckets[bucketIdx].splice(keyIdx, 1);
+    }
 };
 
 /** 
@@ -28,13 +75,6 @@ MyHashSet.prototype.remove = function(key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function(key) {
-    return !!this.set[key];
+    const idx = this.hashFn(key);
+    return this.buckets[idx].includes(key);
 };
-
-/** 
- * Your MyHashSet object will be instantiated and called as such:
- * var obj = new MyHashSet()
- * obj.add(key)
- * obj.remove(key)
- * var param_3 = obj.contains(key)
- */
