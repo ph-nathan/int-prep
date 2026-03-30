@@ -90,7 +90,16 @@ MyHashMap.prototype.remove = function(key) {
 
     for (let i = 0; i < bucket.length; i++) {
         if (bucket[i][0] === key) {
-            bucket.splice(i, 1);
+            
+            // bucket.splice(i, 1);
+            // 2. The "Swap and Pop" Trick
+            // Instead of splice(), we swap the target element with the 
+            // LAST element in the array, and then pop() the array. 
+            // This prevents the need to shift elements and guarantees O(1) removal.
+            const lastIdx = bucket.length - 1;
+            bucket[i] = bucket[lastIdx]; 
+            bucket.pop();
+            return;
         }
     }
 };
